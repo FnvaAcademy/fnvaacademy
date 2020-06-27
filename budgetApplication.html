@@ -1,0 +1,133 @@
+<html lang="en">
+<head>
+    <link href="budgetApplication.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 id="mainCaption">My To-Do-List</h2>
+    <div id="container">
+
+    </div>
+    <p id="errorMassage"></p>
+    <div id="addToDo">
+        <h2 id="nameCaption">Goals</h2>
+        <textarea id="nameAct"></textarea>
+        <button type="submit" id="addBtn">Add</button>
+    </div>
+    <style>
+        @media screen and (max-width:321px){
+    #container{
+    height:300px;
+    margin-top:-10px;
+    border:solid 2px black;
+}
+#mainCaption{
+    font-family:arial;
+    font-weight:bold;
+    margin-left:70px;
+}
+#addToDo{
+    border:solid 2px black;
+    margin-top:12px;
+    height:180px;
+}
+#nameCaption{
+    font-family:arial;
+    font-weight:bold;
+    margin-top:5px;
+    font-size:20px;
+    text-align:center;
+    margin-left:-16px;
+}
+#deleteButton{
+    margin-left:6px;
+    font-family:arial;
+    font-weight:bolder;
+    margin-top:-6px;
+}
+#errorMassage{
+    font-family:arial;
+    margin-top:-20;
+    font-size:13px;
+    margin-left:10px;
+    font-weight:bold;
+    color:red;
+    float:left;
+}
+#nameAct{
+    border:solid 2px black;
+    margin-left:10px;
+    width:280px;
+    height:50px;
+}
+#addBtn{
+    margin-top:30px;
+    width:70px;
+    height:30px;
+    margin-left:110px;
+    font-family:Arial;
+    font-weight:bolder;
+    border:solid 1.5px blue;
+}
+#innerContainer{
+    border:solid 1px black;
+    margin-top:10px;
+    height:80px;
+    background-color:white;
+    width:280px;
+    color:black;
+    margin-left:7px;
+}
+body{
+    background-color:#93e1f9;
+}
+#content{
+    font-family:arial;
+    font-weight:bold;
+    margin-top:2px;
+    font-size:13px;
+    margin-left:2px;
+}
+}
+    </style>
+    
+    <script>
+        var increament = 0;
+        function toDoList(){
+            increament++;
+            var counter = increament;
+            if(increament<=3){
+            var innerContainer = document.createElement("div");
+            var container = document.getElementById("container");
+            var content = document.createElement("p");
+            var deleteButton = document.createElement("button");
+            var textbox = document.getElementById("nameAct");
+            var textboxValue = textbox.value;
+            innerContainer.id="innerContainer";
+            content.id ="content";
+            deleteButton.id="deleteButton";
+            deleteButton.innerHTML="delete";
+            container.appendChild(innerContainer);
+            content.innerHTML =  textboxValue;
+            innerContainer.appendChild(content);
+            innerContainer.appendChild(deleteButton);
+            deleteButton.onclick= function deleteContent(){
+            container.removeChild(innerContainer);
+            increament--;
+            }
+            }
+            else{
+                var errorMassage = document.getElementById("errorMassage");
+                errorMassage.innerHTML = " you're only allowed to create 3 to-do-list ";
+            }
+        }
+        function button(){
+            var button = document.getElementById("addBtn");
+            button.onclick = toDoList;
+        }
+        button();
+    </script>
+</body>
+</html>
